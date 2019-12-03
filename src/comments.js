@@ -10,24 +10,34 @@ export function comments(state = [], action) {
             }
             , ...state];
         case REMOVE_COMMENT:
-            return state.comments.map(comment => comment.id !== action.id);
+            return state.map(comment => {
+                if(comment.id !== action.id) {
+                    return {comment};
+                }
+            return comment;
+            });        
         case EDIT_COMMENT:
-            return state.comments.map(comment => {
-                        if(comment.id === action.id) {
-                            comment.text = action.text;
-                        }
-                    });
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return {...comment, text: action.text};
+                }
+            return comment;
+            });        
         case THUMB_UP_COMMENT:
-            return state.comments.map(comment => {
-                        if(comment.id === action.id) {
-                            comment.votes +=1;
-                        }
-                    });
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return {...comment, votes: comment.votes +1};
+                }
+            return comment;
+            });        
         case THUMB_DOWN_COMMENT:
-            return state.comments.map(comment => {
-                        if(comment.id === action.id) {
-                            comment.votes -=1;
-                        }
-                    });
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return {...comment, votes: comment.votes -1};
+                }
+            return comment;
+            });
+        default:
+            return state;
     }
 }

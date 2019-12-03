@@ -46,21 +46,19 @@ export function removeComment(id) {
 export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
 export const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
 
-export function addThumb(id, thumbNumber) {
+export function thumbUpComment(commentId) {
     return {
-        type: THUMB_UP_COMMENT,   
-        id: id,
-        votes: thumbNumber
-    }        
-}
-//const boundAddThumb = id => dispatch(addThumb(id));
+      type: THUMB_UP_COMMENT,
+      id: commentId
+    }
+  }
+//const boundAddThumb = id => dispatch(thumbUpComment(id));
 //boundAddThumb(20);
 
-export function subThumb(id, thumbNumber) {
+export function thumbDownComment(commentId) {
     return {
         type: THUMB_DOWN_COMMENT,  
-        id: id,
-        votes: thumbNumber
+        id: commentId        
     }         
 }
 //const boundSubThumb = id => dispatch(subThumb(id));
